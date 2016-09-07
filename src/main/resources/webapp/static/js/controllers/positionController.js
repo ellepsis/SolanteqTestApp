@@ -13,6 +13,12 @@ angular.module('solanteqTestApp').controller('positionController', ['$scope', 'd
         });
     };
 
+    $scope.addNewPosition = function () {
+      dataLoaderFactory.postNewPosition($scope.newPosition).success(function () {
+          $scope.loadPositions();
+      });
+    };
+
     $scope.loadData = function () {
         $scope.loadPositions();
     }

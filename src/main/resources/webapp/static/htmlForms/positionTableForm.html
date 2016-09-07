@@ -1,4 +1,5 @@
 <div class="container" data-ng-controller="positionController" data-ng-init="loadData()">
+
     <div class="row">
         <H3>Добавить новую должность</H3>
     </div>
@@ -14,12 +15,13 @@
                 </div>
                 <div class="col-lg-2">
                     <button class="btn btn-success" role="button" data-ng-disabled="positionInputForm.$invalid"
-                            data-ng-click="addNewClientType()">Добавить
+                            data-ng-click="addNewPosition()">Добавить
                     </button>
                 </div>
             </div>
         </form>
     </div>
+
     <div class="row">
         <H3>Список добавленных должностей</H3>
     </div>
