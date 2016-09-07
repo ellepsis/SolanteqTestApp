@@ -8,7 +8,7 @@ angular.module('solanteqTestApp').controller('positionController', ['$scope', 'd
     function ($scope, dataLoaderFactory) {
 
     $scope.loadPositions = function () {
-        dataLoaderFactory.loadPositions().success(function (response) {
+        dataLoaderFactory.loadPositions($scope.filterParams).success(function (response) {
             $scope.positions = response;
         });
     };

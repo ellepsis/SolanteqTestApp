@@ -10,6 +10,14 @@ taxiApp.factory('dataLoaderFactory', ['$location', '$http', function ($location,
     var dataLoader = {};
     var host = $location.protocol() + '://' + $location.host() + ':' + $location.port() + '/';
 
+    //Copy object to local one
+    //If we not make this, user filter values in UI will be changed.
+    function convertFilterParams(filterParams) {
+        var localFilterParams = jQuery.extend({}, filterParams);
+        localFilterParams.pageNumber = (filterParams.pageNumber - 1 < 0 ) ? 0 : filterParams.pageNumber - 1;
+        return localFilterParams;
+    }
+
     dataLoader.loadPositions = function () {
         return $http.get(host + 'api/position/getPositions/');
     };
@@ -23,9 +31,14 @@ taxiApp.factory('dataLoaderFactory', ['$location', '$http', function ($location,
         });
     };
 
-    dataLoader.loadEmployees = function () {
-        return $http.get(host + 'api/employee/getEmployees');
+    dataLoader.loadEmployees = function (filterParams) {
+        var localFilterParams = convertFilterParams(filterParams);
+        return $http({
+            url: host + 'api/employee/getEmployees',
+            method: "get",
+            params: localFilterParams
+        });
     };
-    
+
     return dataLoader;
 }]);
