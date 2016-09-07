@@ -1,0 +1,52 @@
+<div class="container" data-ng-controller="positionController" data-ng-init="loadData()">
+    <div class="row">
+        <H3>Добавить новую должность</H3>
+    </div>
+    <div class="row">
+        <form name="positionInputForm">
+            <div class="form-group">
+                <div class="col-lg-3">
+                    <label for="positionInputForm">Введите название должности*</label>
+                </div>
+                <div class="col-lg-3">
+                    <input type="text" class="form-control" id="positionInputForm"
+                           data-ng-model="newPosition.positionName" required>
+                </div>
+                <div class="col-lg-2">
+                    <button class="btn btn-success" role="button" data-ng-disabled="positionInputForm.$invalid"
+                            data-ng-click="addNewClientType()">Добавить
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <H3>Список добавленных должностей</H3>
+    </div>
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>
+                    Название должности
+                </th>
+                <th>
+                    Изменить
+                </th>
+            </tr>
+            </thead>
+            <tbody data-ng-repeat="position in positions">
+            <tr>
+                <td>
+                    {{position.positionName}}
+                </td>
+                <td>
+                    <button class="btn btn-success" role="button" data-ng-click="editPosition(position)">Изменить
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
