@@ -3,9 +3,9 @@
  */
 
 "use strict";
-var taxiApp = angular.module('solanteqTestApp');
+var solanteqTestApp = angular.module('solanteqTestApp');
 
-taxiApp.factory('dataLoaderFactory', ['$location', '$http', function ($location, $http) {
+solanteqTestApp.factory('dataLoaderFactory', ['$location', '$http', function ($location, $http) {
 
     var dataLoader = {};
     var host = $location.protocol() + '://' + $location.host() + ':' + $location.port() + '/';
@@ -38,6 +38,14 @@ taxiApp.factory('dataLoaderFactory', ['$location', '$http', function ($location,
             method: "get",
             params: localFilterParams
         });
+    };
+
+    dataLoader.loadEmployee = function (employeeId) {
+        return $http({
+            url: host + 'api/employee/getEmployee/',
+            method: "get",
+            params: {employeeId: employeeId}
+        })
     };
 
     dataLoader.postEmployee = function (employee) {

@@ -1,6 +1,7 @@
 package com.ellepsis.solanteqTest.controller.restController;
 
 import com.ellepsis.solanteqTest.entity.Employee;
+import com.ellepsis.solanteqTest.entity.Position;
 import com.ellepsis.solanteqTest.exception.InvalidDataException;
 import com.ellepsis.solanteqTest.repository.EmployeeRepository;
 import com.ellepsis.solanteqTest.repository.PositionRepository;
@@ -15,8 +16,10 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Created by Ellepsis on 07.09.2016.
@@ -54,6 +57,9 @@ public class EmployeeController {
                                                        @RequestParam(required = false) Date endDate,
                                                        @RequestParam(required = false, defaultValue = DEFAULT_PAGE) Integer pageNumber,
                                                        @RequestParam(required = false, defaultValue = DEFAULT_COUNT) Integer rowCount) {
+        if (lastName != null && lastName.isEmpty()) lastName = null;
+        if (firstName != null && firstName.isEmpty()) firstName = null;
+        if (middleName != null && middleName.isEmpty()) middleName = null;
         Specification<Employee> employeeSpecification = EmployeeSpecifications.
                 filter(lastName, firstName, middleName, startDate, endDate, positionId);
         if (pageNumber < 0) pageNumber = 0;
@@ -61,6 +67,13 @@ public class EmployeeController {
         PageRequest pageRequest = new PageRequest(pageNumber, rowCount);
         Page<Employee> page = employeeRepository.findAll(employeeSpecification, pageRequest);
         return new ResponseWithCount<>(page.getContent(), page.getTotalElements());
+    }
+
+    @RequestMapping(path = "getEmployee", method = RequestMethod.GET)
+    public Employee getEmployee(@RequestParam Integer employeeId){
+        Employee employee = employeeRepository.findOne(employeeId);
+        if (employee == null) throw new InvalidDataException("Invalid employee id");
+        return employee;
     }
 
     @RequestMapping(path = "addNewEmployee/", method = RequestMethod.POST)
@@ -85,13 +98,19 @@ public class EmployeeController {
             throw new InvalidDataException("Employee birthday date can't be empty");
         if (employee.getBirthdayDate().after(new Date()))
             throw new InvalidDataException("Employee birthday date can't be after current time");
+        Calendar calendar = new GregorianCalendar();
+        calendar.set(1902, 1, 1);
+        if (employee.getBirthdayDate().before(calendar.getTime()))
+            throw new InvalidDataException("Birthday date can't be before " + calendar.toString());
         if (employee.getPosition() == null)
             throw new InvalidDataException("Employee position can't be empty");
-        if (!positionRepository.findOne(employee.getPosition().getId()).equals(employee.getPosition())){
+        Position position = positionRepository.findOne(employee.getPosition().getId());
+        if (position == null || !position.equals(employee.getPosition())){
             throw new InvalidDataException("Employee position is invalid");
         }
         return employee;
     }
+
 
     @Autowired
     public void setEmployeeRepository(EmployeeRepository employeeRepository) {

@@ -8,7 +8,7 @@ var solanteqTestApp = angular.module('solanteqTestApp');
 solanteqTestApp.config(function ($routeProvider) {
 
     $routeProvider.when('/employees', {
-        templateUrl: "htmlForms/employeeForm.html",
+        templateUrl: "htmlForms/employeesTableForm.html",
         controller: "employeeController"
     });
 
@@ -21,5 +21,10 @@ solanteqTestApp.config(function ($routeProvider) {
         templateUrl: "htmlForms/employeeInputForm.html",
         controller: "positionController"
     });
+
+    $routeProvider.when('/employees/changeInfo/:employeeId', {
+        templateUrl: "htmlForms/employeeInputForm.html",
+        controller: "positionController"
+    })
 
 });

@@ -1,9 +1,6 @@
 package com.ellepsis.solanteqTest.entity;
 
-import javafx.geometry.Pos;
-
 import javax.persistence.*;
-import javax.validation.constraints.Max;
 import java.sql.Date;
 
 /**

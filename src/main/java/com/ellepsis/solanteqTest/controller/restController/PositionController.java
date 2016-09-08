@@ -1,9 +1,7 @@
 package com.ellepsis.solanteqTest.controller.restController;
 
-import com.ellepsis.solanteqTest.entity.Employee;
 import com.ellepsis.solanteqTest.entity.Position;
 import com.ellepsis.solanteqTest.exception.InvalidDataException;
-import com.ellepsis.solanteqTest.exception.WebAppException;
 import com.ellepsis.solanteqTest.repository.PositionRepository;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import org.springframework.beans.factory.annotation.Autowired;

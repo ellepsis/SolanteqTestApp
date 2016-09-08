@@ -32,19 +32,12 @@
                 <th>
                     Название должности
                 </th>
-                <th>
-                    Изменить
-                </th>
             </tr>
             </thead>
             <tbody data-ng-repeat="position in positions">
             <tr>
                 <td>
                     {{position.positionName}}
-                </td>
-                <td>
-                    <button class="btn btn-success" role="button" data-ng-click="editPosition(position)">Изменить
-                    </button>
                 </td>
             </tr>
             </tbody>

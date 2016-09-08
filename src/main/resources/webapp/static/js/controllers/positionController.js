@@ -16,7 +16,7 @@ angular.module('solanteqTestApp').controller('positionController', ['$scope', 'd
         $scope.addNewPosition = function () {
             dataLoaderFactory.postNewPosition($scope.newPosition).success(function () {
                 $scope.loadPositions();
-                alertFactory.successAlert('Успешно добавленно/обновленно');
+                alertFactory.successAlert('Успешно добавленно');
             }).error(function (response) {
                 alertFactory.errorAlert('Не возможно добавить/обновить: ' + response.message);
             });

@@ -1,4 +1,4 @@
-<div class="container" data-ng-controller="employeeController" data-ng-init="loadPositions()">
+<div class="container" data-ng-controller="employeeController" data-ng-init="loadEditData()">
     <div class="row">
         <H3>Введите данные сотрудника</H3>
     </div>
@@ -9,15 +9,15 @@
                     <label for="lastName">Фамилия*</label>
                 </div>
                 <div class="col-lg-2">
-                    <input class="form-control" type="text" required="true" id="lastName"
-                           data-ng-model="employee.lastName"  maxlength="50">
+                    <input class="form-control" type="text" id="lastName"
+                           data-ng-model="employee.lastName" maxlength="50" required >
                 </div>
                 <div class="col-lg-2">
                     <label for="firstName">Имя*</label>
                 </div>
                 <div class="col-lg-2">
-                    <input class="form-control" type="text" required="true" id="firstName"
-                           data-ng-model="employee.firstName"  maxlength="50">
+                    <input class="form-control" type="text" required id="firstName"
+                           data-ng-model="employee.firstName" maxlength="50">
                 </div>
                 <div class="col-lg-2">
                     <label for="middleName">Отчество</label>
@@ -32,8 +32,14 @@
                     <label for="date">Дата рождения*</label>
                 </div>
                 <div class="col-lg-2">
-                    <input class="form-control" type="date" required="true" id="date"
-                           data-ng-model="employee.birthdayDate">
+                    <input class="form-control" type="date" name="birthdayDate" id="date"
+                           data-ng-model="employee.birthdayDate"
+                           data-ng-max="9999-12-31" max="9999-12-31" required>
+                    <div class="form-group has-error" data-ng-show="employeeInputForm.birthdayDate.$touched">
+                        <span class="control-label" data-ng-show="employeeInputForm.birthdayDate.$error.date">
+                           Неверная дата. Дата не может быть раньше 1902-ого года.
+                        </span>
+                    </div>
                 </div>
                 <div class="col-lg-2">
                     <label for="position">Выберите должность*</label>
@@ -50,6 +56,6 @@
                     </button>
                 </div>
             </div>
-    </form>
-</div>
+        </form>
+    </div>
 </div>
