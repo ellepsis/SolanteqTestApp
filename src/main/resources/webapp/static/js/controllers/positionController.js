@@ -4,23 +4,26 @@
 
 "use strict";
 
-angular.module('solanteqTestApp').controller('positionController', ['$scope', 'dataLoaderFactory',
-    function ($scope, dataLoaderFactory) {
+angular.module('solanteqTestApp').controller('positionController', ['$scope', 'dataLoaderFactory', 'alertFactory',
+    function ($scope, dataLoaderFactory, alertFactory) {
 
-    $scope.loadPositions = function () {
-        dataLoaderFactory.loadPositions($scope.filterParams).success(function (response) {
-            $scope.positions = response;
-        });
-    };
+        $scope.loadPositions = function () {
+            dataLoaderFactory.loadPositions($scope.filterParams).success(function (response) {
+                $scope.positions = response;
+            });
+        };
 
-    $scope.addNewPosition = function () {
-      dataLoaderFactory.postNewPosition($scope.newPosition).success(function () {
-          $scope.loadPositions();
-      });
-    };
+        $scope.addNewPosition = function () {
+            dataLoaderFactory.postNewPosition($scope.newPosition).success(function () {
+                $scope.loadPositions();
+                alertFactory.successAlert('Успешно добавленно/обновленно');
+            }).error(function (response) {
+                alertFactory.errorAlert('Не возможно добавить/обновить: ' + response.message);
+            });
+        };
 
-    $scope.loadData = function () {
-        $scope.loadPositions();
-    }
+        $scope.loadData = function () {
+            $scope.loadPositions();
+        }
 
-}]);
+    }]);

@@ -5,6 +5,7 @@
     <title>Solanteq Test</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/solanteqTestStyle.css" rel="stylesheet">
+    <link href="css/angular-flash.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -15,7 +16,7 @@
         </div>
         <div>
             <ul class="nav navbar-nav">
-                <li><a href="#//">Добавить сотрудника</a></li>
+                <li><a href="#/employees/addNew/">Добавить сотрудника</a></li>
                 <li><a href="#/employees">Сотрудники</a></li>
                 <li><a href="#/positions">Должности</a></li>
             </ul>
@@ -23,12 +24,15 @@
     </div>
 </nav>
 
+<flash-message></flash-message>
+
 <div data-ng-view></div>
 
 <script src="js/lib/jquery-3.1.0.min.js"></script>
 <script src="js/lib/bootstrap.min.js"></script>
 <script src="js/lib/angular.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-route.js"></script>
+<script src="js/lib/angular-route.min.js"></script>
+<script src="js/lib/angular-flash.min.js"></script>
 <script src="js/app.js"></script>
 <script src="js/appConfig.js"></script>
 <script src="js/dataLoaderFactory/dataLoaderFactory.js"></script>

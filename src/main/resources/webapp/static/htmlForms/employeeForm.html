@@ -96,6 +96,13 @@
             <td>{{employee.birthdayDate}}</td>
         </tr>
         </tbody>
-        </table>
+    </table>
+    <div class="row">
+        <div class="col-lg-2">
+            <button class="btn btn-success" data-ng-click="getPreviousPage()" data-ng-disabled="!isHavePreviousPage">Предыдущая страница</button>
+        </div>
+        <div class="col-lg-2 col-lg-offset-8">
+            <button class="btn btn-success" data-ng-click="getNextPage()" data-ng-disabled="!isHaveNextPage">Следующая страница</button>
+        </div>
     </div>
 </div>

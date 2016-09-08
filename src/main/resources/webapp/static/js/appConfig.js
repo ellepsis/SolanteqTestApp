@@ -3,7 +3,7 @@
  */
 
 "use strict";
-var solanteqTestApp = angular.module('solanteqTestApp', ['ngRoute']);
+var solanteqTestApp = angular.module('solanteqTestApp');
 
 solanteqTestApp.config(function ($routeProvider) {
 
@@ -14,6 +14,11 @@ solanteqTestApp.config(function ($routeProvider) {
 
     $routeProvider.when('/positions', {
         templateUrl: "htmlForms/positionTableForm.html",
+        controller: "positionController"
+    });
+
+    $routeProvider.when('/employees/addNew/', {
+        templateUrl: "htmlForms/employeeInputForm.html",
         controller: "positionController"
     });
 

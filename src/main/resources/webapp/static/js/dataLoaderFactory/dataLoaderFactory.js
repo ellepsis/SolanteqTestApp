@@ -40,5 +40,14 @@ taxiApp.factory('dataLoaderFactory', ['$location', '$http', function ($location,
         });
     };
 
+    dataLoader.postEmployee = function (employee) {
+        return $http({
+            url: host + 'api/employee/addNewEmployee/',
+            method: "POST",
+            data: angular.toJson(employee),
+            headers: {'Content-Type': 'application/json'}
+        });
+    };
+
     return dataLoader;
 }]);

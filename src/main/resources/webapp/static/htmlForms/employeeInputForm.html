@@ -1,0 +1,55 @@
+<div class="container" data-ng-controller="employeeController" data-ng-init="loadPositions()">
+    <div class="row">
+        <H3>Введите данные сотрудника</H3>
+    </div>
+    <div class="row">
+        <form name="employeeInputForm">
+            <div class="row">
+                <div class="col-lg-2">
+                    <label for="lastName">Фамилия*</label>
+                </div>
+                <div class="col-lg-2">
+                    <input class="form-control" type="text" required="true" id="lastName"
+                           data-ng-model="employee.lastName"  maxlength="50">
+                </div>
+                <div class="col-lg-2">
+                    <label for="firstName">Имя*</label>
+                </div>
+                <div class="col-lg-2">
+                    <input class="form-control" type="text" required="true" id="firstName"
+                           data-ng-model="employee.firstName"  maxlength="50">
+                </div>
+                <div class="col-lg-2">
+                    <label for="middleName">Отчество</label>
+                </div>
+                <div class="col-lg-2">
+                    <input class="form-control" type="text" id="middleName"
+                           data-ng-model="employee.middleName" maxlength="50">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2">
+                    <label for="date">Дата рождения*</label>
+                </div>
+                <div class="col-lg-2">
+                    <input class="form-control" type="date" required="true" id="date"
+                           data-ng-model="employee.birthdayDate">
+                </div>
+                <div class="col-lg-2">
+                    <label for="position">Выберите должность*</label>
+                </div>
+                <div class="col-lg-2">
+                    <select class="form-control" data-ng-model="employee.position" id="position"
+                            data-ng-options="position as position.positionName for position in positions track by position.id"
+                            required>
+                    </select>
+                </div>
+                <div class="col-lg-2 col-lg-offset-2">
+                    <button class="btn btn-success" role="button" data-ng-disabled="employeeInputForm.$invalid"
+                            data-ng-click="addNewEmployee()">Добавить
+                    </button>
+                </div>
+            </div>
+    </form>
+</div>
+</div>
